@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlackJack</title>
+</head>
+<body>
+    <nav>
+        <button id="btnMainMenu">
+            Main Menu
+        </button>
+    </nav>
+    <main id="main">
+
+    </main>
+
+    <script>
+        const parser = new DOMParser()
+
+<!--        let cleanMain = parser.parseFromString(`<main id="main">-->
+<!--                                <section id="newGameMenu">-->
+<!--                                    <button id="btnStartGame">Start New Game</button>-->
+<!--                                </section>-->
+<!--                           </main>`, 'text/html');-->
+
+        let cleanMain = `<section id="newGameMenu">
+                                    <button id="btnStartGame">Start New Game</button>
+                         </section>`
+
+        let btnMainMenu = document.getElementById("btnMainMenu");
+        btnMainMenu.addEventListener("click", () => {
+            let main = document.getElementById("main");
+            console.log(cleanMain);
+            main.innerHTML = cleanMain;
+        });
+
+        let btnStartGame = document.getElementById("btnStartGame");
+        btnStartGame.addEventListener("click", () => {
+            console.log("new game")
+        })
+    </script>
+</body>
+</html>
