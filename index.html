@@ -125,10 +125,9 @@
             dealerCards = [gameDecks.pop(), gameDecks.pop()]
             playerCards = [gameDecks.pop(), gameDecks.pop()]
 
-            for (let card of dealerCards) {
-                elemDealersCard.textContent += `${card.card}`;
-                elemDealersCard.textContent += ` `;
-            }
+            elemDealersCard.textContent = `${dealerCards[0].card} ${dealerCards[1].card}`
+
+
         }
 
         function cardFactory (num, color) {
