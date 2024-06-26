@@ -27,6 +27,7 @@
         let cash = 1000;
         let bet = 10;
 
+        let main = document.getElementById("main");
         const parser = new DOMParser()
         const cleanMain = `<section id="newGameMenu">
                             <button id="btnStartGame">Start New Game</button>
@@ -67,12 +68,12 @@
 
                             <section>
                             <span>Bet: </span>
-                            <span id:"currBet"></span>
+                            <span id="currBet"></span>
                             </section>
 
                             <section>
                             <span>Cash: </span>
-                            <span id:"currCash"></span>
+                            <span id="currCash"></span>
                             </section>
 
                             <section id="decision">
@@ -84,6 +85,7 @@
                  </section>`
 
         function game () {
+
             decksNum = document.getElementById("decks").value;
             split = document.getElementById("split").value;
             insurance = document.getElementById("insurance").value;
@@ -103,29 +105,30 @@
 
             gameDecks = prepareDecks(decksNum);
 
-            let main = document.getElementById("main");
             main.innerHTML = gamePan;
+            let dealerCards = [];
+            let playerCards = [];
+            let elemDealersCard = document.getElementById("dealersCard");
+            let elemPlayersCard = document.getElementById("playersCard");
 
             cash = cash - bet;
 
             console.log(cash, bet)
 
-            document.addEventListener("load", () => {
-                console.log("DOMContentLoaded");
-                currCash = document.getElementById("currCash");
-                currCash.textContent = String(cash); 
+            currCash = document.getElementById("currCash");
+            console.log(document.getElementById("gamePan"))
+            currCash.textContent = cash;
 
-                currBet = document.getElementById("currBet");
-                currBet.textContent = bet;
-            });
+            currBet = document.getElementById("currBet");
+            currBet.textContent = bet;
 
-            // currCash = document.getElementById("currCash");
-            // currCash.textContent = String(cash); 
+            dealerCards = [gameDecks.pop(), gameDecks.pop()]
+            playerCards = [gameDecks.pop(), gameDecks.pop()]
 
-            // currBet = document.getElementById("currBet");
-            // currBet.textContent = bet;
-            
-            console.log(gameDecks);
+            for (let card of dealerCards) {
+                elemDealersCard.textContent += `${card.card}`;
+                elemDealersCard.textContent += ` `;
+            }
         }
 
         function cardFactory (num, color) {
@@ -179,7 +182,7 @@
             gameDecks = null;
             cash = 1000;
             bet = 10;
-            let main = document.getElementById("main");
+
             main.innerHTML = newGamePan;
         };
 
@@ -187,7 +190,7 @@
         function mainRun () {
             btnMainMenu = document.getElementById("btnMainMenu");
             btnMainMenu.addEventListener("click", () => {
-                let main = document.getElementById("main");
+
                 main.innerHTML = cleanMain;
 
                 btnStartGame = document.getElementById("btnStartGame");
